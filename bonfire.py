@@ -4,6 +4,7 @@
 # ----------------------------------------------
 import scanner
 import reporter
+import hits
 
 def main():
     # tells user that program is running
@@ -12,6 +13,9 @@ def main():
 
     # calls <function> (scanner.py) to begin scanning files
     scanner.scanner()
+
+    # check for any CVE hits
+    #hits.hits(scanner.FILENAME)
 
     # generate report (reporter.py)
 

@@ -4,7 +4,12 @@
 Python program that takes a list of all programs on your Windows device and checks it against CVE records to determine if their is a "critical hit".  
 
 <h3>Files and What They Do</h3>
-->currently no files :(
+<ul style="list-style-type:none;">
+  <li>bonfire.py - main() function, calls all other files</li>
+  <li>scanner.py - uses command prompt to scan for system information and installed packages</li>
+  <li>hits.py - takes the information from scanner.py to see if any installed software (based on its version) was flagged in a CVE</li>
+  <li>reporter.py - takes info from hits.py and generates a report based on how many hits came back</li>
+</ul>
 
 <h3>Project Status</h3>
 Currently a work in progress

@@ -13,4 +13,4 @@ Currently a work in progress
 
 
 <h3>DISCLAIMER</h3>
-This program is not made to accuractely depict all possible vulnerabilities in your Windows system. This should NOT be used as a security measure and is merely a fun personal project. Any harm that comes from using this program or making security decisions based on the results of this program is not the GitHub creator (MasterJedi08) responsibility. Please do not take this as true cybersecurity advice.
+This program is not made to accuractely depict all possible vulnerabilities in your Windows system. This should NOT be used as a security measure and is merely a fun personal project. Any harm that comes from using this program or making security decisions based on the results of this program is not the GitHub creator's (MasterJedi08) responsibility. Please do not take this as true cybersecurity advice.

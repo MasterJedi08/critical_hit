@@ -12,10 +12,10 @@ def main():
     print("will your computer pass the test?")
 
     # calls <function> (scanner.py) to begin scanning files
-    scanner.scanner()
+    VERSION_FILE = scanner.scanner()
 
     # check for any CVE hits
-    #hits.hits(scanner.FILENAME)
+    hits.hits(VERSION_FILE)
 
     # generate report (reporter.py)
 

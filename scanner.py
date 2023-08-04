@@ -3,8 +3,6 @@
 #       the system itself to check against CVE
 # ----------------------------------------------
 import subprocess as sp
-import os
-import platform
 
 # -------------------------------------------------
     # CONSTANTS
@@ -31,8 +29,6 @@ def scanner():
 	DETAIL_FILE = hostname_tokens[0] + "_full_report_packages.txt"
 	VERSION_FILE = hostname_tokens[0] + "_version_packages.txt"
 	INFO_FILE = hostname_tokens[0] + "_systeminfo.txt"
-	# file = open(FILENAME, "w")
-	#infofile = open(FILENAME, "w")
 
 	# get basic system info
 	sp.getoutput(str("echo 'SYSTEM' >> " + INFO_FILE))
@@ -51,15 +47,13 @@ def scanner():
 	# GET INSTALLED PACKAGES
 # -------------------------------------------------
 # -------------------------------------------------
+
 	# get installed packages - save to diff file
-	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Sort-Object Name | ft Name,Version,ProviderName >> %s"' % (VERSION_FILE))
+	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Sort-Object Name | fl Name,Version > %s"' % (VERSION_FILE))
 	
 	# get installed packages (FULL PROPERTIES) - save to diff file
-	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Select-Object -Property * | Sort-Object Name >> %s"' % (DETAIL_FILE))
-	
-    
+	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Select-Object -Property * | Sort-Object Name > %s"' % (DETAIL_FILE))
 
     # return to bonfire
-	#file.close()
-	return()
+	return VERSION_FILE
         

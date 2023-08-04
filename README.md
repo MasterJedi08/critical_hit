@@ -1,7 +1,7 @@
 # critical_hit
 
 <h3>What is it? </h3>
-Python program that takes a list of all programs on your Windows device and checks it against CVE records to determine if their is a "critical hit".  
+Python program that uses the Command Prompt to discover software on your Windows device and checks it against CVE records to determine if their is a "critical hit". A report of all software is generated, along with the CVE for any 'critical_hit.' 
 
 <h3>Files and What They Do</h3>
 <ul style="list-style-type:none;">
@@ -13,6 +13,8 @@ Python program that takes a list of all programs on your Windows device and chec
 
 <h3>Project Status</h3>
 Currently a work in progress
+I have the foundations complete - the program currently only generates reports on the host's system information, a detailed list of software, a basic list of software, and a final report dividing the software discovered on the host into "Microsoft" and "Non-Microsoft" software. 
+At the moment, I only need to add CVE integration to complete this project.
 
 <h3>Known Errors: </h3>
 

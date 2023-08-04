@@ -22,11 +22,11 @@ def scanner():
 
     # create file using 
 	#	hostname_systeminfo.txt for general system info
-	# 	hostname_full_report_packages.txt for full detail packages report
+	# 	hostname_detailed_packages.txt for full detail packages report
 	# 	hostname_version_packages.txt for package names + versions
 	hostname = sp.getoutput("hostname")
 	hostname_tokens = hostname.split('.')
-	DETAIL_FILE = hostname_tokens[0] + "_full_report_packages.txt"
+	DETAIL_FILE = hostname_tokens[0] + "_detailed_packages.txt"
 	VERSION_FILE = hostname_tokens[0] + "_version_packages.txt"
 	INFO_FILE = hostname_tokens[0] + "_systeminfo.txt"
 
@@ -47,6 +47,8 @@ def scanner():
 	# GET INSTALLED PACKAGES
 # -------------------------------------------------
 # -------------------------------------------------
+	# this print is here purely for aesthetic reasons
+	print("GENERATING REPORT...")
 
 	# get installed packages - save to diff file
 	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Sort-Object Name | fl Name,Version > %s"' % (VERSION_FILE))
@@ -55,5 +57,5 @@ def scanner():
 	sp.getoutput('powershell.exe "Get-Package -MinimumVersion 0.0 | Select-Object -Property * | Sort-Object Name > %s"' % (DETAIL_FILE))
 
     # return to bonfire
-	return VERSION_FILE
+	return VERSION_FILE, hostname
         

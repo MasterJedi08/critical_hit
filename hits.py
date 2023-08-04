@@ -3,17 +3,16 @@
 #       scanner.py function
 # ----------------------------------------------
 
+# dictionary that holds package information in form of name:version
 packages_dict = {}
 
 def hits(version_file):
     # clean txt file 
-    version_file = ".\\" + version_file
-    print("file: " + version_file)
     clean_text(version_file)    
-    # search JSON CVE for each program in txt file
+    # search JSON CVE for each program in txt file [NOT DOING THAT RN]
 
     # record any hits in crit_hits.txt + their severity
-    pass
+    return packages_dict
 
 def clean_text(version_file):
     # parse name and version into dictionary
@@ -32,7 +31,7 @@ def clean_text(version_file):
                 split_line = line.split("\x00")
                 new_str = "".join(split_line)
                 tokens = new_str.split(" : ")                    
-                print(tokens)
+                # print(tokens)
                 
                 if tokens[0] == "Name   ":
                     # add name to temp var
@@ -52,16 +51,6 @@ def clean_text(version_file):
         #print("issue opening file: " + version_file)
         #return
 
-        file.close()
+    file.close()
+    return packages_dict
 
-
-
-        # line_hex = line.split("\x00")
-        #             new_line = "".join(line_hex)
-        #             new_line = new_line.split()
-        #             print(new_line)
-
-    print(packages_dict)
-    return
-
-hits(".\LAPTOP-1SL7MVV3_version_packages.txt")

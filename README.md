@@ -1,7 +1,7 @@
 # critical_hit
 
 <h3>What is it? </h3>
-Python program that uses the Command Prompt to discover software on your Windows device and checks it against CVE records to determine if their is a "critical hit". A report of all software is generated, along with the CVE for any 'critical_hit.' 
+Python program that uses the Command Prompt to discover software on your Windows device and checks it against CVE records to determine if there is a "critical hit" (a match for a CVE). A report of all software is generated, along with the CVE for any 'critical_hit.' 
 
 <h3>Files and What They Do</h3>
 <ul style="list-style-type:none;">
